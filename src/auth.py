@@ -3,7 +3,7 @@ import tokens
 
 api = {}
 
-# TODO: check it the authentication token and secret can be retrieved someway given the credentials of the user or something (without the need of creating  Twitter app)
+# TODO: check it the authentication token and secret can be retrieved someway given the credentials of the user or something (without the need of creating a Twitter app)
 # Some functions that that might be useful: SetCredentials, VerifyCredentials, GetAppOnlyAuthToken
 
 # To use authentication, instantiate the twitter.Api class with a consumer key and secret; and the oAuth key and secret

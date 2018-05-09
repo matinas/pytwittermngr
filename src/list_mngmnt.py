@@ -1,16 +1,16 @@
 import auth
 
 # There are basically 4 different lists to manage:
-# 1. NPI: contains followed-back users who aren't in any of the relevant to-check lists unfollows should be controlled in this list (in both sides, list's user unfollows authenticated user and visceversa)
-# 2. NPI.Unfollowed: contains users before in the NPI list who were unfollowed by the authenticated user unfollows should be controller in this list (list's users who unfollowed authenticated user)
-# 3. NPI.Unfollowed.Back: contains users before in the NPI.Unfollowed list who unfollowed back the authenticated user this list can be processed just in order to get stats about how many unfollowed users unfollowed back auth user (bots?)
-# 4. NPI.Unfollowed.Me: contains users before in the NPI list who unfollowed the authenticated user for no reason this list can be processed just in order to get stats about how many users unfollowed auth user after a while (bots?)
+# 1. MNG.Main: contains followed-back users who aren't in any of the relevant to-check lists unfollows should be controlled in this list (in both sides, list's user unfollows authenticated user and visceversa)
+# 2. MNG.Unfollowed: contains users before in the NPI list who were unfollowed by the authenticated user unfollows should be controller in this list (list's users who unfollowed authenticated user)
+# 3. MNG.Unfollowed.Back: contains users before in the NPI.Unfollowed list who unfollowed back the authenticated user this list can be processed just in order to get stats about how many unfollowed users unfollowed back auth user (bots?)
+# 4. MNG.Unfollowed.Me: contains users before in the NPI list who unfollowed the authenticated user for no reason this list can be processed just in order to get stats about how many users unfollowed auth user after a while (bots?)
 
 mngmnt_lists = {
-    "MNG.Main" : "Followed-back users who aren't in any of the relevant to-check lists",
-    "MNG.Unfollowed" : "Users previously in the NPI list who were unfollowed by me",
-	"MNG.Unfollowed.Back" : "Users previously in the NPI.Unfollowed list who unfollowed me back (bots?)",
-	"MNG.Unfollowed.Me" : "Users previously in the NPI list who unfollowed me for no reason (bots?)"
+    "MNG.Main" : "Followed-back users who aren't in any of the relevant lists",
+    "MNG.Unfollowed" : "Users previously in the MNG.Main list who were unfollowed by me",
+	"MNG.Unfollowed.Back" : "Users previously in the MNG.Unfollowed list who unfollowed me back (bots?)",
+	"MNG.Unfollowed.Me" : "Users previously in the MNG list who unfollowed me for no reason (bots?)"
 }
 
 # Management lists slug names
@@ -19,14 +19,29 @@ MNG_UNFOLLOWED = "mng-unfollowed"
 MNG_UNFOLLOWED_BACK = "mng-unfollowed-back"
 MNG_UNFOLLOWED_ME = "mng-unfollowed-me"
 
+# searches the list with name list_name in the set of lists
+# returns true if found, false otherwise
+def search_list(list_name, lists):
+    
+    for l in lists:
+        if (l.name == list_name):
+            return True
+    
+    return False
+
 # creates the four lists mentioned above , including description and stuff. It's worth noting that the user is the one in charge of filling
 # the main NPI list with users as they are friended all the remaining tasks can be done automatically by this bot (unfriending, removing
 # users from list, moving users between lists, etc)
 def create_mngnt_lists():
-    for list,desc in mngmnt_lists:
-        #if (not exist(list))
-        #create_list(list,desc)
-        print("List %s created successfully" % list)
+    
+    lists = auth.api.GetLists()
+
+    for (list_name,list_desc) in mngmnt_lists.items():
+        if (not search_list(list_name,lists)):
+            auth.api.CreateList(list_name,'private',list_desc)
+            print("List %s created successfully" % list_name)
+        else:
+            print("List %s already exists" % list_name)
 
 # prints the different lists of the authenticated user, including basic stats for each one. This function is useful to check whether the
 # management lists were created properly and if they are ready to be processed
