@@ -1,10 +1,10 @@
 import auth
 
 # There are basically 4 different lists to manage:
-# 1. MNG.Main: contains followed-back users who aren't in any of the relevant to-check lists unfollows should be controlled in this list (in both sides, list's user unfollows authenticated user and visceversa)
-# 2. MNG.Unfollowed: contains users before in the NPI list who were unfollowed by the authenticated user unfollows should be controller in this list (list's users who unfollowed authenticated user)
-# 3. MNG.Unfollowed.Back: contains users before in the NPI.Unfollowed list who unfollowed back the authenticated user this list can be processed just in order to get stats about how many unfollowed users unfollowed back auth user (bots?)
-# 4. MNG.Unfollowed.Me: contains users before in the NPI list who unfollowed the authenticated user for no reason this list can be processed just in order to get stats about how many users unfollowed auth user after a while (bots?)
+# 1. MNG.Main: contains followed-back users who aren't in any of the relevant to-check lists. Unfollows should be controlled in this list (in both directions, users who unfollowed the authenticated user and visceversa)
+# 2. MNG.Unfollowed: contains users before in the NPI list who were unfollowed by the authenticated. User unfollows should be controlled in this list (users who unfollowed the authenticated user)
+# 3. MNG.Unfollowed.Back: contains users previously in the NPI.Unfollowed list who unfollowed back the authenticated user. This list can be processed in order to get stats about how many unfollowed users unfollowed back auth user (bots?)
+# 4. MNG.Unfollowed.Me: contains users before in the NPI list who unfollowed the authenticated user for no apparent reason. This list can be processed in order to get stats about how many users unfollowed auth user (bots?)
 
 mngmnt_lists = {
     "MNG.Main" : "Followed-back users who aren't in any of the relevant lists",
