@@ -56,15 +56,22 @@ def get_access_token(consumer_key, consumer_secret):
     except ValueError as e:
         raise 'Invalid response from Twitter requesting temp token: {0}'.format(e)
 
-    print('''Your tokens/keys are as follows:
-        consumer_key         = {ck}
-        consumer_secret      = {cs}
-        access_token_key     = {atk}
-        access_token_secret  = {ats}'''.format(
-            ck=consumer_key,
-            cs=consumer_secret,
-            atk=resp.get('oauth_token'),
-            ats=resp.get('oauth_token_secret')))
+    # print('''Your tokens/keys are as follows:
+    #     consumer_key         = {ck}
+    #     consumer_secret      = {cs}
+    #     access_token_key     = {atk}
+    #     access_token_secret  = {ats}'''.format(
+    #         ck=consumer_key,
+    #         cs=consumer_secret,
+    #         atk=resp.get('oauth_token'),
+    #         ats=resp.get('oauth_token_secret')))
+    
+    print("Access token sucessfully generated!")
+
+    atk = resp.get('oauth_token')
+    ats = resp.get('oauth_token_secret')
+
+    return atk, ats
 
 
 def main():

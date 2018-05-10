@@ -89,7 +89,7 @@ def process_unfollows():
     if auth.authenticated():
         print("User is authenticated. Unfollows will be processed...")
 
-        list_members = get_list_members(MNG_MAIN, auth.auth_user_id)
+        list_members = get_list_members(MNG_MAIN, auth.get_user_id())
         print_list_stats(list_members)
 
         u = 0
@@ -104,7 +104,7 @@ def process_unfollows():
             m_screename = user_dict["screen_name"]
 
             # TODO: LookupFriendship() should be a bit more efficient
-            friendship_data = auth.api.ShowFriendship(auth.auth_user_id,None,m_id,None) # Check friendship between the two users (the authenticated user and the one on the list)
+            friendship_data = auth.api.ShowFriendship(auth.get_user_id(),None,m_id,None) # Check friendship between the two users (the authenticated user and the one on the list)
 
             src_tar = friendship_data["relationship"]
             src = src_tar["source"]
@@ -115,8 +115,8 @@ def process_unfollows():
 
                 if not src["following"]:
                     # Remove user from this list and pass it to the following list in the pipeline
-                    auth.api.DestroyListsMember(None,MNG_MAIN,None,auth.auth_user_id,m_id,None)
-                    auth.api.CreateListsMember(None,MNG_UNFOLLOWED,m_id,None,None,auth.auth_user_id)
+                    auth.api.DestroyListsMember(None,MNG_MAIN,None,auth.get_user_id(),m_id,None)
+                    auth.api.CreateListsMember(None,MNG_UNFOLLOWED,m_id,None,None,auth.get_user_id())
                     print("User %s deleted from %s list and added to %s" % (m_screename,MNG_MAIN,MNG_UNFOLLOWED))
 
                     unfollowed_dict[m_id] = m_screename
@@ -129,8 +129,8 @@ def process_unfollows():
                 print("User %s unfriended" % m_screename)
 
                 # Remove user from this list and pass it to the following list in the pipeline
-                auth.api.DestroyListsMember(None,MNG_MAIN,None,auth.auth_user_id,m_id,None)
-                auth.api.CreateListsMember(None,MNG_UNFOLLOWED_ME,m_id,None,None,auth.auth_user_id)
+                auth.api.DestroyListsMember(None,MNG_MAIN,None,auth.get_user_id(),m_id,None)
+                auth.api.CreateListsMember(None,MNG_UNFOLLOWED_ME,m_id,None,None,auth.get_user_id())
                 print("User %s deleted from %s list and added to %s" % (m_screename,MNG_MAIN,MNG_UNFOLLOWED_ME))
 
         print("Total users following: %s" % following)
@@ -148,7 +148,7 @@ def process_unfollowed():
     if auth.authenticated():
         print("User is authenticated. Unfollowed will be processed...")
 
-        list_members = get_list_members(MNG_UNFOLLOWED, auth.auth_user_id)
+        list_members = get_list_members(MNG_UNFOLLOWED, auth.get_user_id())
         print_list_stats(list_members)
 
         u = 0
@@ -162,7 +162,7 @@ def process_unfollowed():
             m_screename = user_dict["screen_name"]
 
             # TODO: LookupFriendship() should be a bit more efficient
-            friendship_data = auth.api.ShowFriendship(auth.auth_user_id,None,m_id,None) # Check friendship between the two users (the authenticated user and the one on the list)
+            friendship_data = auth.api.ShowFriendship(auth.get_user_id(),None,m_id,None) # Check friendship between the two users (the authenticated user and the one on the list)
 
             src_tar = friendship_data["relationship"]
             src = src_tar["source"]
@@ -176,8 +176,8 @@ def process_unfollowed():
                 print("User %s unfriended" % m_screename)
 
                 # Remove user from this list and pass it to the following list in the pipeline
-                auth.api.DestroyListsMember(None,MNG_UNFOLLOWED,None,auth.auth_user_id,m_id,None)
-                auth.api.CreateListsMember(None,MNG_UNFOLLOWED_BACK,m_id,None,None,auth.auth_user_id)
+                auth.api.DestroyListsMember(None,MNG_UNFOLLOWED,None,auth.get_user_id(),m_id,None)
+                auth.api.CreateListsMember(None,MNG_UNFOLLOWED_BACK,m_id,None,None,auth.get_user_id())
                 print("User %s deleted from %s list and added to %s" % (m_screename,MNG_UNFOLLOWED,MNG_UNFOLLOWED_BACK))
             else:
                 following += 1
@@ -195,7 +195,7 @@ def process_unfollowed_back():
     if auth.authenticated():
         print("User is authenticated. Unfollowed back stats will be listed...")
 
-        list_members = get_list_members(MNG_UNFOLLOWED_BACK, auth.auth_user_id)
+        list_members = get_list_members(MNG_UNFOLLOWED_BACK, auth.get_user_id())
         print_list_stats(list_members)
     else:
         print("Please, check authentication tokens")
@@ -207,7 +207,7 @@ def process_unfollowed_me():
     if auth.authenticated():
         print("User is authenticated. Unfollowed stats will be listed...")
 
-        list_members = get_list_members(MNG_UNFOLLOWED_ME, auth.auth_user_id)
+        list_members = get_list_members(MNG_UNFOLLOWED_ME, auth.get_user_id())
         print_list_stats(list_members)
     else:
         print("Please, check authentication tokens")
