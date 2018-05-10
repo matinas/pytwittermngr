@@ -28,9 +28,11 @@ So, for example the following command will use the default consumer/app token (m
 
 Once executed, a browser will be opened in order to request the access token to the Twitter backend. Consdering you are already logged into Twitter in that browser (otherwise it will first ask you for credentials), you'll have to give the required permissions to the app:
 
-IMAGEN
+<img src="https://user-images.githubusercontent.com/5633645/39858693-b4f6bd0a-540d-11e8-9edb-7d9d43b97ce6.png" alt="scene1to7_3" style="max-width:100%" width="512" heigth="512">
 
 Once you authorized the app to use some of your account's information you'll receive a PIN code. At this point, the Python program should be asking you to enter this PIN, so copy-paste it or just write it into the commanda line. If all went fine, you should have all set for the app to communicate with your account and the program main menu will be shown.
+
+<img src="https://user-images.githubusercontent.com/5633645/39858697-b7eebaee-540d-11e8-8579-3ebf6f12ed42.png" alt="scene1to7_3" style="max-width:100%" width="512" heigth="512">
 
 In case we already have generated our own consumer token and our access token through the Twitter app manager (https://apps.twitter.com/) following the guide linked before, we can include all tokens using the following command:
 
