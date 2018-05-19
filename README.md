@@ -73,6 +73,7 @@ Once executed the program will show a menu with all the available options, which
 
 # TBD
 
+- Add option to execute all at once (menu options 1 to 7 in order)
 - User can specify the name of the management lists to use
 - Main friends/following/followers lists can also be processed
 - Add GUI
