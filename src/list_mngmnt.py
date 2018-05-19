@@ -80,9 +80,9 @@ def print_list_stats(list):
     total_members = len(list)
     print("The list has %s members" % total_members)
 
-# processes the NPI list in search of unfollows. For each unfollow it removes the user from this list and add it to the NPI.Unfollowed.Me.
+# processes the MNG.Main list in search of unfollows. For each unfollow it removes the user from this list and add it to the NPI.Unfollowed.Me.
 # it also unfollows the user and prints basic information about the process results additionally, it processes unfollowed users and moves
-# them to the NPI.Unfollowed list
+# them to the MNG.Unfollowed list
 def process_unfollows():
     print("Process unfollows")
 
@@ -140,8 +140,8 @@ def process_unfollows():
     else:
         print("Please, check authentication tokens")
 
-# processes the NPI.Unfollowed list in search of unfollows. For each unfollow it removes the user from this list and add it to the
-# NPI.Unfollowed.Back. it also prints basic information about the process results
+# processes the MNG.Unfollowed list in search of unfollows. For each unfollow it removes the user from this list and add it to the
+# MNG.Unfollowed.Back. it also prints basic information about the process results
 def process_unfollowed():
     print("Process unfollowed")
 
@@ -188,7 +188,7 @@ def process_unfollowed():
     else:
         print("Please, check authentication tokens")
 
-# processes the NPI.Unfollowed.Back and prints some basic stats
+# processes the MNG.Unfollowed.Back and prints some basic stats
 def process_unfollowed_back():
     print("Unfollowed back stats")
 
@@ -200,7 +200,7 @@ def process_unfollowed_back():
     else:
         print("Please, check authentication tokens")
 
-# processes the NPI.Unfollowed.Me list and prints some basic stats
+# processes the MNG.Unfollowed.Me list and prints some basic stats
 def process_unfollowed_me():
     print("Unfollowed stats")
 

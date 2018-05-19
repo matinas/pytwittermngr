@@ -43,7 +43,6 @@ def main():
     try:
         shortflags = '-h'
         longflags = ['help', 'generate-access-token', 'consumer-key=', 'consumer-secret=', 'access-key=', 'access-secret=']
-        print(sys.argv[1:])
         opts, args = getopt.gnu_getopt(sys.argv[1:], shortflags, longflags)
     except getopt.GetoptError:
         print_usage_and_exit()
