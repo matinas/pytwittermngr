@@ -27,7 +27,7 @@ So, for example the following command will use the default consumer/app token (m
 
 > *main.exe --generate-access-token*
 
-Once executed, a browser will be opened in order to request the access token to the Twitter's backend. Consdering you are already logged into Twitter in that browser (otherwise it will first ask you for credentials), you'll only have to give the required permissions to the app:
+Once executed, a browser will be opened in order to request the access token to the Twitter's backend. Considering you are already logged into Twitter in that browser (otherwise it will first ask you for credentials), you'll only have to give the required permissions to the app:
 
 <img src="https://user-images.githubusercontent.com/5633645/39858693-b4f6bd0a-540d-11e8-9edb-7d9d43b97ce6.png" alt="authorize" style="max-width:100%">
 
@@ -41,7 +41,7 @@ In case we already have generated our own consumer token and our access token th
 
 ## From Source
 
-In case you want to use the application starting from the source code you need to have a few things installed and woking on your system beforehand:
+In case you want to use the application starting from the source code you need to have a few things installed and working on your system beforehand:
 
 1. [Python 3](https://www.python.org) interpreter
 2. [Python Twitter](https://github.com/bear/python-twitter) wrapper for the Twitter API. Check the Installing section on the README; installation is pretty straightforward using the pip install command
