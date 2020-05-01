@@ -72,6 +72,12 @@ def query_lists():
 
 # The list slug is the list word in the list URL (e.g.: the slug for the list https://twitter.com/matinassi/lists/mng-main is mng-main and the list owner is matinassi
 def get_list_members(slug,user):
+
+    # NOTE: had to change a line inside auth.api.GetListMembers method so to allow to retrieve more than 100 users (default value)
+    # I guess the issue is that the Twitter API changed and now the way to tell if we have reached the bottom of the list is just check for next_cursor = 0: https://developer.twitter.com/en/docs/basics/cursoring
+    # So I commented the following code, as the plugin was already checking for next_cursor == previous_cursor: if next_cursor == 0: #or next_cursor == previous_cursor:
+    # Filed a new issue for the Python Twitter Plugin, check: https://github.com/bear/python-twitter/issues/661
+
     list_members = auth.api.GetListMembers(None,slug,user,None,False,False)
 
     return list_members
