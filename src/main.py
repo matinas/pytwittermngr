@@ -85,7 +85,7 @@ def main():
         print("An access token will be generated")
         
         if not consumer_key or not consumer_secret:
-	        print_usage_and_exit()
+            print_usage_and_exit()
         else:
             try:
                 tmp_access_key, tmp_access_secret = get_access_token.get_access_token(consumer_key, consumer_secret)
@@ -94,7 +94,7 @@ def main():
                 sys.exit(2)
 
             if not tmp_access_key and not tmp_access_secret:
-	            print("Access token couldn't be generated. The given access keys (environment's or hardcoded) will be used instead...")
+                print("Access token couldn't be generated. The given access keys (environment's or hardcoded) will be used instead...")
             else:
                 # override the already read access keys
                 access_key = tmp_access_key 
